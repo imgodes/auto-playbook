@@ -246,7 +246,7 @@ Customize these procedures for your organization:
         logger.error(f"Error creating markdown content: {str(e)}")
         raise
 
-def save_playbook(output_dir, technique_id, content, force=False):
+def save_playbook(attack_data, output_dir, technique_id, content, force=False):
     try:
         os.makedirs(output_dir, exist_ok=True)
         
@@ -274,7 +274,7 @@ def generate_playbook(attack_data, technique_id, output_dir, force=False):
         logger.info(f"Processing technique {technique_id}...")
         technique_details = get_technique_details(attack_data, technique_id)
         content = create_markdown_content(technique_details)
-        return save_playbook(output_dir, technique_id, content, force)
+        return save_playbook(attack_data, output_dir, technique_id, content, force)
     except Exception as e:
         logger.error(f"Error processing technique {technique_id}: {str(e)}")
         return None
